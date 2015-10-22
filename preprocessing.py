@@ -1,9 +1,9 @@
-from nltk import PorterStemmer
+#from nltk import PorterStemmer
 from stemming.porter2 import stem
 from sets import Set
 import os
 import sys
-import pickle
+import cPickle as pickle
 
 #stem()
 #stemmer.stem()
@@ -23,7 +23,7 @@ for ham_email in ham_folder:
 
 for spam_email in spam_folder:
     if spam_email.endswith('.txt'): 
-    	print spam_email
+    	#print spam_email
     	f = open('enron1/spam/' + spam_email)
     	for word in f.read().split():
     		#stemming
@@ -42,7 +42,7 @@ ham = []
 #create bag-of words for ham emails
 for ham_email in ham_folder:
     if ham_email.endswith('.txt'): 
-    	print ham_email
+    	#print ham_email
     	email_vec = [0] * len(dictionary)
     	f = open('enron1/ham/' + ham_email)
     	for word in f.read().split():
@@ -59,7 +59,7 @@ spam = []
 #create bag-of words for spam emails
 for spam_email in spam_folder:
     if spam_email.endswith('.txt'): 
-    	print spam_email
+    	#print spam_email
     	email_vec = [0] * len(dictionary)
     	f = open('enron1/spam/' + spam_email)
     	for word in f.read().split():

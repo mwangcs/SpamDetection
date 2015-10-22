@@ -14,13 +14,19 @@ dict_file.close()
 email_vec = [0] * len(dict)
 for word in testfile.read().split():
 	word = stem(unicode(word, errors='ignore'))
-	#ignore those words that are not in the vocabulary
+	#ignore OOV words
 	if word in dict:
 		email_vec[dict.index(word)] +=1
 
+#makes prediction
 x = np.array(email_vec)
-w_list = [1] * len(dict)
-w = np.array(w_list)
+x = np.append(x,1)
+w_file = open('w_file.txt', 'rb')
+w = pickle.load(w_file)
 
 predict = 1/(1+math.exp(-sum(x*w)))
-print np.sign(2*predict-1)
+
+if predict > 0.5:
+	print 1
+else:
+	print 0
